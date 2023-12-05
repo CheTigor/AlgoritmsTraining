@@ -1,8 +1,9 @@
 package org.example.sort;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,8 @@ public class RegexSort {
      * M - M-значные числа, то есть 734 - 3-х значное число
      */
 
-    public static void main(String[] args) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputRegex.txt"));
         try {
             //Инициализация количества элементов неотсортированного массива
             final int N1 = Integer.parseInt(br.readLine());

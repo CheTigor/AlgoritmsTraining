@@ -1,8 +1,8 @@
 package org.example.string;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class ZFunction {
 
@@ -14,7 +14,7 @@ public class ZFunction {
      * Z - функция, так же как и хэши, помогают организовывать поиск по строке.
      */
     public static void main(String[] args) throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputZ.txt"))) {
             final String line = ' ' + br.readLine();
             final StringHash stringHash = new StringHash(line);
             StringBuilder result = new StringBuilder();
@@ -42,26 +42,26 @@ public class ZFunction {
         }
     }
 
-        private static class StringHash {
+    private static class StringHash {
 
-            private final long X = 257;
-            private final long P = (long) Math.pow(10, 9) + 7;
-            private final long[] h;
-            private final long[] x;
+        private final long X = 257;
+        private final long P = (long) Math.pow(10, 9) + 7;
+        private final long[] h;
+        private final long[] x;
 
-            public StringHash(String line) {
-                h = new long[line.length()];
-                x = new long[line.length()];
-                x[0] = 1;
-                for (var i = 1; i < line.length(); i++) {
-                    h[i] = ((h[i - 1] * X) + (long) (line.charAt(i))) % P;
-                    x[i] = (x[i - 1] * X) % P;
-                }
-            }
-
-            private boolean isEqual(int len, int from1, int from2) {
-                return (h[from1 + len - 1] + h[from2 - 1] * x[len]) % P
-                        == (h[from2 + len - 1] + h[from1 - 1] * x[len]) % P;
+        public StringHash(String line) {
+            h = new long[line.length()];
+            x = new long[line.length()];
+            x[0] = 1;
+            for (var i = 1; i < line.length(); i++) {
+                h[i] = ((h[i - 1] * X) + (long) (line.charAt(i))) % P;
+                x[i] = (x[i - 1] * X) % P;
             }
         }
+
+        private boolean isEqual(int len, int from1, int from2) {
+            return (h[from1 + len - 1] + h[from2 - 1] * x[len]) % P
+                    == (h[from2 + len - 1] + h[from1 - 1] * x[len]) % P;
+        }
+    }
 }

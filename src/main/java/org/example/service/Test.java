@@ -11,13 +11,13 @@ public class Test {
         set.add(new Cost(3, 11.0, false));
         set.add(new Cost(2, 2.0, false));
         Queue<Cost> queue = new PriorityQueue<>(Comparator.comparing(Cost::getCost));
-        queue.add(new Cost(5,10.0, false));
+        queue.add(new Cost(5, 10.0, false));
         queue.add(new Cost(6, 9.0, false));
         queue.add(new Cost(3, 100.0, false));
         queue.add(new Cost(2, 2.0, false));
         System.out.println(queue);
         System.out.println(queue.peek());
-        queue.remove(new Cost(5,10.0, false));
+        queue.remove(new Cost(5, 10.0, false));
         /*SortedSet<Map.Entry<Integer, Double>> sortedset = new TreeSet<>(Map.Entry.comparingByValue());
         SortedMap<Integer, Double> myMap = new TreeMap<>();
         myMap.put(5, 10.0);

@@ -1,8 +1,8 @@
 package org.example.string;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class MinPrefixSearch {
 
@@ -11,7 +11,7 @@ public class MinPrefixSearch {
      * минимально возможной подстроки, из которой состоит строка с помощью повторов подстроки
      */
     public static void main(String[] args) throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputPrefix.txt"))) {
             final String line = ' ' + br.readLine();
             final StringHash stringHash = new StringHash(line);
             int result = line.length() - 1;

@@ -3,30 +3,31 @@ package org.example.sort;
 import org.example.service.Service;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MergeSort {
 
-
     /**
      * СЛОЖНОСТЬ:
-     *      Средняя сложность: O(N(logN))
-     *      Худшая сложность: O(N(logN))
+     * Средняя сложность: O(N(logN))
+     * Худшая сложность: O(N(logN))
      * ПАМЯТЬ:
-     *      Доп. память: O(N)
+     * Доп. память: O(N)
      * Заключение:
-     *      Работает стабильнее быстрой сортировки, но требует дополнительной памяти
+     * Работает стабильнее быстрой сортировки, но требует дополнительной памяти
      * ИДЕЯ:
-     *      Разбиваем рекурсивно массив пополам и доходим до 1 элемента, далее сливаем сортированные массивы в 1,
-     *      а массивы из 1 эл. уже отсортированы.
+     * Разбиваем рекурсивно массив пополам и доходим до 1 элемента, далее сливаем сортированные массивы в 1,
+     * а массивы из 1 эл. уже отсортированы.
+     *
      * @param args
      */
-    public static void start(String[] args) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputSort.txt"));
         try {
             //Инициализируем количество элементов в массиве
             final int N1 = Integer.parseInt(br.readLine());
@@ -48,8 +49,8 @@ public class MergeSort {
             return arr;
         } else {
             //Проводим сортировку для каждой части
-            List<Integer> leftArr = mergeSort(arr.subList(0, arr.size()/2));
-            List<Integer> rightArr = mergeSort(arr.subList(arr.size()/2, arr.size()));
+            List<Integer> leftArr = mergeSort(arr.subList(0, arr.size() / 2));
+            List<Integer> rightArr = mergeSort(arr.subList(arr.size() / 2, arr.size()));
             //Сливаем уже отсортированные массивы
             return merge(leftArr, rightArr);
         }

@@ -1,8 +1,8 @@
 package org.example.string;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,13 +17,13 @@ public class StringHashIsEqual {
      */
     public static void main(String[] args) throws IOException {
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputHash.txt"))) {
             final String line = ' ' + br.readLine();
             long[] h = new long[line.length()];
             long[] x = new long[line.length()];
             x[0] = 1;
             for (var i = 1; i < line.length(); i++) {
-                h[i] = ((h[i - 1] * X) + (long)(line.charAt(i))) % P;
+                h[i] = ((h[i - 1] * X) + (long) (line.charAt(i))) % P;
                 x[i] = (x[i - 1] * X) % P;
             }
             final int count = Integer.parseInt(br.readLine());

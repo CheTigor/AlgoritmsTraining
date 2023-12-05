@@ -3,8 +3,9 @@ package org.example.sort;
 import org.example.service.Service;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,12 +15,13 @@ public class QuickSortThreePoints {
 
     /**
      * Сортировка похожа на быструю, но мы не создаем новые массивы, а делаем перестановки в текущем.
+     *
      * @param args
      */
 
-    public static void start(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Random rnd = new Random();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/inputSort.txt"));
         try {
             //Инициализируем количество элементов массива (не обязательно, но нужно было для практикума)
             final int N = Integer.parseInt(br.readLine());
@@ -38,11 +40,12 @@ public class QuickSortThreePoints {
 
     /**
      * Для сортировки понадобиться 4 переменные:
-     * @param arr - наш исходный массив, который мы будем разбивать в помощью счетчиков начала и конца, таким образом
-     *            не создавая новый массив.
+     *
+     * @param arr   - наш исходный массив, который мы будем разбивать в помощью счетчиков начала и конца, таким образом
+     *              не создавая новый массив.
      * @param start - счетчик начала массива, указывающий с каким подмассивом работаем
-     * @param stop - счетчик конца массива, указывающий с каким подмассивом работаем
-     * @param rnd - класс, помогающий выбрать рандомный опорный элемент (pivot)
+     * @param stop  - счетчик конца массива, указывающий с каким подмассивом работаем
+     * @param rnd   - класс, помогающий выбрать рандомный опорный элемент (pivot)
      */
     private static void sort(List<Integer> arr, Integer start, Integer stop, Random rnd) {
         if ((stop - start) < 2) {
@@ -51,7 +54,7 @@ public class QuickSortThreePoints {
         //Берем рандомный опорный элемент, чтобы получить правильный индекс из подмассива, мы берем рандомное число из
         //длины подмассива, а потом к нему прибавляем стартовый индекс, получаем случайный индекс из подмассива.
         //bound работает так, он берет рандомное число от 0 (включ) до start (не включ)
-        final Integer pivot = arr.get(rnd.nextInt(stop-start) + start);
+        final Integer pivot = arr.get(rnd.nextInt(stop - start) + start);
         //Счетчик начала значений, которые равны опорному
         int E = start;
         //Счетчик начала значений, которые больше опорного
